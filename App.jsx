@@ -11,7 +11,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const EVENTS = [
   {
-    id: "ufcmorenovskavanagh", name: "UFC Fight Night", subtitle: "Moreno vs. Kavanagh",
+    id: "ufcmorenovskavanagh", name: "UFC Mexico City", subtitle: "Moreno vs. Kavanagh",
     date: "February 28, 2026", venue: "Arena CDMX, Mexico City Mexico",
     broadcast: "Paramount+", status: "past",
     fights: [
@@ -24,7 +24,7 @@ const EVENTS = [
     ],
   },
   {
-    id: "ufcstricklandvshernandez", name: "UFC Fight Night", subtitle: "Strickland vs. Hernandez",
+    id: "ufcstricklandvshernandez", name: "UFC Houston", subtitle: "Strickland vs. Hernandez",
     date: "February 21, 2026", venue: "Toyota Center, Houston TX",
     broadcast: "Paramount+", status: "past",
     fights: [
@@ -37,7 +37,7 @@ const EVENTS = [
     ],
   },
   {
-    id: "ufcbautistavsoliveira", name: "UFC Fight Night", subtitle: "Bautista vs. Oliveira",
+    id: "ufcbautistavsoliveira", name: "UFC Vegas 113", subtitle: "Bautista vs. Oliveira",
     date: "February 7, 2026", venue: "Meta APEX, Las Vegas NV",
     broadcast: "Paramount+", status: "past",
     fights: [

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { createClient } from "@supabase/supabase-js";
 
 // ─── SUPABASE CONFIG ──────────────────────────────────────────────────────────
 // Replace these with your project values from supabase.com → Project Settings → API
@@ -10,6 +10,45 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const EVENTS = [
+  {
+    id: "ufcmorenovskavanagh", name: "UFC Fight Night", subtitle: "Moreno vs. Kavanagh",
+    date: "February 28, 2026", venue: "Arena CDMX, Mexico City Mexico",
+    broadcast: "Paramount+", status: "past",
+    fights: [
+      { id: 501, section: "MAIN EVENT", fighter1: "Brandon Moreno", fighter2: "Lone'er Kavanagh", record1: "23-10-2", record2: "10-1", weightClass: "Flyweight", lbs: 125, note: "Short-notice upset — Kavanagh wins unanimous decision", bio1: "Former 2x UFC Flyweight Champion, Mexican hero", bio2: "English flyweight on the rise" },
+      { id: 502, section: "CO-MAIN EVENT", fighter1: "Marlon Vera", fighter2: "David Martinez", record1: "22-10-1", record2: "8-1", weightClass: "Bantamweight", lbs: 135, note: "Chito's 4th straight loss", bio1: "Ecuadorian fan favourite, Chito", bio2: "Rising Mexican prospect" },
+      { id: 503, section: "MAIN CARD", fighter1: "Daniel Zellhuber", fighter2: "King Green", record1: "15-3", record2: "29-13-1", weightClass: "Lightweight", lbs: 155, note: "Green stoppage in R2", bio1: "Mexican lightweight rising star", bio2: "Veteran with knockout power" },
+      { id: 504, section: "MAIN CARD", fighter1: "Edgar Chairez", fighter2: "Felipe Bunes", record1: "10-3", record2: "10-4", weightClass: "Flyweight", lbs: 125, note: "Split decision for Chairez", bio1: "Mexican flyweight", bio2: "Chilean prospect" },
+      { id: 505, section: "PRELIMS", fighter1: "Imanol Rodriguez", fighter2: "Kevin Borjas", record1: "12-3", record2: "10-3", weightClass: "Flyweight", lbs: 125, note: "TKO finish by Rodriguez", bio1: "Spanish flyweight", bio2: "Mexican contender" },
+      { id: 506, section: "PRELIMS", fighter1: "Ailin Perez", fighter2: "Macy Chiasson", record1: "15-4", record2: "10-5", weightClass: "Women's Bantamweight", lbs: 135, note: "Perez wins unanimous decision", bio1: "Argentine striker", bio2: "American veteran" },
+    ],
+  },
+  {
+    id: "ufcstricklandvshernandez", name: "UFC Fight Night", subtitle: "Strickland vs. Hernandez",
+    date: "February 21, 2026", venue: "Toyota Center, Houston TX",
+    broadcast: "Paramount+", status: "past",
+    fights: [
+      { id: 401, section: "MAIN EVENT", fighter1: "Sean Strickland", fighter2: "Anthony Hernandez", record1: "29-6", record2: "16-3", weightClass: "Middleweight", lbs: 185, note: "Strickland TKO R3 — Tarzan reclaims the spotlight", bio1: "Former UFC Middleweight Champion, Tarzan", bio2: "Fluffy, 8-fight win streak entering this one" },
+      { id: 402, section: "CO-MAIN EVENT", fighter1: "Geoff Neal", fighter2: "Uros Medic", record1: "16-6", record2: "16-0", weightClass: "Welterweight", lbs: 170, note: "Medic KO in R1 — keeps his unbeaten record", bio1: "Handz of Steel, dangerous power", bio2: "Undefeated Serbian banger" },
+      { id: 403, section: "MAIN CARD", fighter1: "Melquizael Costa", fighter2: "Dan Ige", record1: "17-5", record2: "17-8", weightClass: "Featherweight", lbs: 145, note: "Costa spinning back kick TKO — instant highlight", bio1: "Brazilian highlight reel", bio2: "Hawaiian veteran" },
+      { id: 404, section: "MAIN CARD", fighter1: "Serghei Spivac", fighter2: "Ante Delija", record1: "17-4", record2: "20-5", weightClass: "Heavyweight", lbs: 265, note: "Spivac grinds out a decision", bio1: "Moldovan heavyweight contender", bio2: "Croatian power puncher" },
+      { id: 405, section: "MAIN CARD", fighter1: "Josiah Harrell", fighter2: "Jacobe Smith", record1: "8-2", record2: "11-2", weightClass: "Welterweight", lbs: 170, note: "Smith KO R1", bio1: "American welterweight", bio2: "Texas brawler" },
+      { id: 406, section: "PRELIMS", fighter1: "Michel Pereira", fighter2: "Zach Reese", record1: "31-11-2", record2: "13-3", weightClass: "Middleweight", lbs: 185, note: "Pereira split decision", bio1: "Demolidor, the showman of the octagon", bio2: "American grappler" },
+    ],
+  },
+  {
+    id: "ufcbautistavsoliveira", name: "UFC Fight Night", subtitle: "Bautista vs. Oliveira",
+    date: "February 7, 2026", venue: "Meta APEX, Las Vegas NV",
+    broadcast: "Paramount+", status: "past",
+    fights: [
+      { id: 301, section: "MAIN EVENT", fighter1: "Mario Bautista", fighter2: "Vinicius Oliveira", record1: "17-3", record2: "12-2", weightClass: "Bantamweight", lbs: 135, note: "Bautista submission R2 — statement win", bio1: "Slick grappler and top BW contender", bio2: "Brazilian rising star" },
+      { id: 302, section: "CO-MAIN EVENT", fighter1: "Amir Albazi", fighter2: "Kyoji Horiguchi", record1: "17-2", record2: "32-7", weightClass: "Flyweight", lbs: 125, note: "Horiguchi wins unanimous decision", bio1: "The Prince, top flyweight contender", bio2: "Japanese legend back in the UFC" },
+      { id: 303, section: "MAIN CARD", fighter1: "Jailton Almeida", fighter2: "Rizvan Kuniev", record1: "22-3", record2: "10-2", weightClass: "Heavyweight", lbs: 265, note: "Kuniev decision upset", bio1: "Malhadinho, submission specialist", bio2: "Russian heavyweight" },
+      { id: 304, section: "MAIN CARD", fighter1: "Michal Oleksiejczuk", fighter2: "Marc-Andre Barriault", record1: "20-8", record2: "17-7", weightClass: "Middleweight", lbs: 185, note: "Oleksiejczuk unanimous decision", bio1: "Polish middleweight banger", bio2: "Canadian crowd pleaser" },
+      { id: 305, section: "MAIN CARD", fighter1: "Dustin Jacoby", fighter2: "Julius Walker", record1: "21-8-1", record2: "8-3", weightClass: "Light Heavyweight", lbs: 205, note: "Jacoby TKO R2 — 3 straight KO wins", bio1: "The Hanyak, veteran striker", bio2: "Rising LHW prospect" },
+      { id: 306, section: "PRELIMS", fighter1: "Nikolay Veretennikov", fighter2: "Niko Price", record1: "12-2", record2: "15-8", weightClass: "Welterweight", lbs: 170, note: "Veretennikov TKO R1", bio1: "Russian Gladiator", bio2: "The Hybrid, action fighter" },
+    ],
+  },
   {
     id: "ufc326", name: "UFC 326", subtitle: "Holloway vs. Oliveira 2",
     date: "March 7, 2026", venue: "T-Mobile Arena, Las Vegas NV",
@@ -31,26 +70,30 @@ const EVENTS = [
     ],
   },
   {
-    id: "ufc325", name: "UFC 325", subtitle: "Pantoja vs. Royval 2",
-    date: "February 1, 2026", venue: "Kaseya Center, Miami FL",
+    id: "ufc325", name: "UFC 325", subtitle: "Volkanovski vs. Lopes 2",
+    date: "February 1, 2026", venue: "Qudos Bank Arena, Sydney Australia",
     broadcast: "Paramount+", status: "past",
     fights: [
-      { id: 101, section: "MAIN EVENT", fighter1: "Alexandre Pantoja", fighter2: "Brandon Royval", record1: "28-5", record2: "16-6", weightClass: "Flyweight", lbs: 125, note: "Flyweight title rematch", belt: true, bio1: "UFC Flyweight Champion", bio2: "Action fighter seeking revenge" },
-      { id: 102, section: "CO-MAIN EVENT", fighter1: "Magomed Ankalaev", fighter2: "Jamahal Hill", record1: "20-1-1", record2: "13-2", weightClass: "Light Heavyweight", lbs: 205, note: "Top-5 light heavyweight clash", bio1: "Russian powerhouse", bio2: "Former light heavyweight champion" },
-      { id: 103, section: "MAIN CARD", fighter1: "Tatiana Suarez", fighter2: "Tracy Cortez", record1: "10-0", record2: "10-1", weightClass: "Women's Flyweight", lbs: 125, note: "Undefeated vs. contender", bio1: "Wrestling phenom", bio2: "Rising contender" },
-      { id: 104, section: "MAIN CARD", fighter1: "Kevin Holland", fighter2: "Michael Morales", record1: "26-11", record2: "17-0", weightClass: "Welterweight", lbs: 170, note: "Veteran vs. unbeaten prospect", bio1: "'Trailblazer'", bio2: "Undefeated Ecuadorian" },
-      { id: 105, section: "PRELIMS", fighter1: "Charles Jourdain", fighter2: "Dan Ige", record1: "16-7-1", record2: "17-8", weightClass: "Featherweight", lbs: 145, note: "Guaranteed action", bio1: "Canadian fan favorite", bio2: "Hawaiian brawler" },
+      { id: 101, section: "MAIN EVENT", fighter1: "Alexander Volkanovski", fighter2: "Diego Lopes", record1: "26-2", record2: "24-3", weightClass: "Featherweight", lbs: 145, note: "Featherweight title rematch in Volk's backyard", belt: true, bio1: "UFC Featherweight Champion, GOAT of 145", bio2: "Brazilian finisher, dangerous on the feet" },
+      { id: 102, section: "CO-MAIN EVENT", fighter1: "Dan Hooker", fighter2: "Benoit Saint Denis", record1: "23-13", record2: "14-3", weightClass: "Lightweight", lbs: 155, note: "Hooker fighting at home in Australia", bio1: "The Hangman, New Zealand fan favourite", bio2: "French lightweight on title hunt" },
+      { id: 103, section: "MAIN CARD", fighter1: "Rafael Fiziev", fighter2: "Mauricio Ruffy", record1: "14-3", record2: "9-2", weightClass: "Lightweight", lbs: 155, note: "Elite strikers both coming off losses", bio1: "Kazakh kickboxing specialist", bio2: "Brazilian striker on the rise" },
+      { id: 104, section: "MAIN CARD", fighter1: "Tai Tuivasa", fighter2: "Tallison Teixeira", record1: "15-8", record2: "14-3", weightClass: "Heavyweight", lbs: 265, note: "Tuivasa fighting at home in Australia", bio1: "Australian fan favourite, pure knockout power", bio2: "Brazilian heavyweight contender" },
+      { id: 105, section: "MAIN CARD", fighter1: "Quillan Salkilld", fighter2: "Jamie Mullarkey", record1: "16-3", record2: "17-7", weightClass: "Lightweight", lbs: 155, note: "All-Australian lightweight showdown", bio1: "Rising Aussie prospect, 4-0 in UFC all finishes", bio2: "Local fan favourite" },
+      { id: 106, section: "PRELIMS", fighter1: "Billy Elekana", fighter2: "Junior Tafa", record1: "9-2", record2: "8-5", weightClass: "Light Heavyweight", lbs: 205, note: "Pacific power clash", bio1: "New Zealand finisher", bio2: "Australian heavyweight" },
+      { id: 107, section: "PRELIMS", fighter1: "Cam Rowston", fighter2: "Cody Brundage", record1: "9-3", record2: "12-5", weightClass: "Middleweight", lbs: 185, note: "Rowston fighting at home in Sydney", bio1: "Australian middleweight", bio2: "American brawler" },
     ],
   },
   {
-    id: "ufcvegas123", name: "UFC Vegas 123", subtitle: "Whittaker vs. Chimaev",
-    date: "January 18, 2026", venue: "UFC Apex, Las Vegas NV",
-    broadcast: "ESPN+", status: "past",
+    id: "ufc324", name: "UFC 324", subtitle: "Gaethje vs. Pimblett",
+    date: "January 24, 2026", venue: "T-Mobile Arena, Las Vegas NV",
+    broadcast: "Paramount+", status: "past",
     fights: [
-      { id: 201, section: "MAIN EVENT", fighter1: "Robert Whittaker", fighter2: "Khamzat Chimaev", record1: "25-7", record2: "13-0", weightClass: "Middleweight", lbs: 185, note: "Bobby Knuckles vs. the undefeated Borz", bio1: "Former UFC middleweight champion", bio2: "Undefeated Chechen wrestling machine" },
-      { id: 202, section: "CO-MAIN EVENT", fighter1: "Cub Swanson", fighter2: "Lerone Murphy", record1: "30-14", record2: "13-0-1", weightClass: "Featherweight", lbs: 145, note: "Veteran vs. unbeaten contender", bio1: "Fan favourite veteran", bio2: "Unbeaten British prospect" },
-      { id: 203, section: "MAIN CARD", fighter1: "Lando Vannata", fighter2: "Terrance McKinney", record1: "13-6-2", record2: "13-5", weightClass: "Lightweight", lbs: 155, note: "Pure chaos energy", bio1: "Highlight reel artist", bio2: "T-Wrecks, always goes for the finish" },
-      { id: 204, section: "PRELIMS", fighter1: "Davey Grant", fighter2: "Johnny Munoz", record1: "16-7", record2: "13-3", weightClass: "Bantamweight", lbs: 135, note: "Prelim banger", bio1: "British knockout artist", bio2: "California contender" },
+      { id: 601, section: "MAIN EVENT", fighter1: "Justin Gaethje", fighter2: "Paddy Pimblett", record1: "27-5", record2: "22-4", weightClass: "Lightweight", lbs: 155, note: "Interim title — instant classic, Gaethje wins UD", belt: true, bio1: "The Highlight, 2x interim LW champ", bio2: "The Baddy, Liverpool fan favourite" },
+      { id: 602, section: "CO-MAIN EVENT", fighter1: "Sean O'Malley", fighter2: "Song Yadong", record1: "18-2", record2: "21-9-1", weightClass: "Bantamweight", lbs: 135, note: "O'Malley unanimous decision", bio1: "Suga, former UFC BW champion", bio2: "Chinese contender with serious power" },
+      { id: 603, section: "MAIN CARD", fighter1: "Waldo Cortes-Acosta", fighter2: "Derrick Lewis", record1: "14-2", record2: "28-13", weightClass: "Heavyweight", lbs: 265, note: "Cortes-Acosta TKO R2", bio1: "Dominican heavyweight rising fast", bio2: "The Black Beast, all-time KO record" },
+      { id: 604, section: "MAIN CARD", fighter1: "Natalia Silva", fighter2: "Rose Namajunas", record1: "18-5-1", record2: "13-7", weightClass: "Women's Flyweight", lbs: 125, note: "Silva unanimous decision", bio1: "Brazilian flyweight contender", bio2: "Thug Rose, former 2x strawweight champion" },
+      { id: 605, section: "MAIN CARD", fighter1: "Jean Silva", fighter2: "Arnold Allen", record1: "14-2", record2: "19-4", weightClass: "Featherweight", lbs: 145, note: "Silva unanimous decision", bio1: "Brazilian featherweight finishing machine", bio2: "British contender, Almighty" },
+      { id: 606, section: "PRELIMS", fighter1: "Umar Nurmagomedov", fighter2: "Deiveson Figueiredo", record1: "18-0", record2: "23-6-1", weightClass: "Bantamweight", lbs: 135, note: "Umar dominant unanimous decision", bio1: "Undefeated, Khabib's cousin", bio2: "Deus da Guerra, former 2x flyweight champion" },
     ],
   },
 ];

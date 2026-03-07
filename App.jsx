@@ -65,7 +65,6 @@ const EVENTS = [
       { id: 9, section: "PRELIMS", fighter1: "Cody Durden", fighter2: "Nyamjargal Tumendemberel", record1: "16-5-1", record2: "16-3", weightClass: "Flyweight", lbs: 125, note: "Flyweight showdown", bio1: "Durable veteran", bio2: "Mongolian striker" },
       { id: 10, section: "EARLY PRELIMS", fighter1: "Sumudaerji", fighter2: "Jesus Aguilar", record1: "17-5", record2: "9-4", weightClass: "Flyweight", lbs: 125, note: "Flyweight action", bio1: "Chinese fan favorite 'Flash'", bio2: "Mexican slugger" },
       { id: 11, section: "EARLY PRELIMS", fighter1: "Rafael Tobias", fighter2: "Diyar Nurgozhay", record1: "8-1", record2: "9-3", weightClass: "Light Heavyweight", lbs: 205, note: "Light heavyweight contest", bio1: "Brazilian prospect", bio2: "Kazakhstani contender" },
-      { id: 12, section: "EARLY PRELIMS", fighter1: "Gaston Bolanos", fighter2: "Jeong Yeong Lee", record1: "10-4", record2: "8-3", weightClass: "Featherweight", lbs: 145, note: "Featherweight scrap", bio1: "Ecuadorian featherweight", bio2: "South Korean fighter" },
       { id: 13, section: "EARLY PRELIMS", fighter1: "Luke Fernandez", fighter2: "Rodolfo Bellato", record1: "9-1", record2: "10-3", weightClass: "Light Heavyweight", lbs: 205, note: "Light heavyweight bout", bio1: "Australian prospect", bio2: "Brazilian contender" },
     ],
   },

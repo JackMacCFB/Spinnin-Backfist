@@ -108,14 +108,48 @@ const C = { gold: "#e8c840", bg: "#080808", surface: "#111", border: "#1e1e1e", 
 
 function StarRating({ value, onChange, size = "md" }) {
   const [hover, setHover] = useState(0);
-  const sz = { xl: "36px", lg: "28px", md: "20px", sm: "15px" }[size] || "20px";
+  const px = { xl: 36, lg: 28, md: 20, sm: 15 }[size] || 20;
+
+  const handleMouseMove = (e, starIndex) => {
+    if (!onChange) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const half = x < rect.width / 2;
+    setHover(half ? starIndex - 0.5 : starIndex);
+  };
+
+  const handleClick = (e, starIndex) => {
+    e.stopPropagation();
+    if (!onChange) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const half = x < rect.width / 2;
+    onChange(half ? starIndex - 0.5 : starIndex);
+  };
+
+  const display = hover || value || 0;
+
   return (
     <div style={{ display: "flex", gap: "2px" }}>
-      {[1, 2, 3, 4, 5].map(s => (
-        <button key={s} onClick={e => { e.stopPropagation(); onChange?.(s); }}
-          onMouseEnter={() => onChange && setHover(s)} onMouseLeave={() => setHover(0)}
-          style={{ fontSize: sz, background: "none", border: "none", padding: 0, cursor: onChange ? "pointer" : "default", color: s <= (hover || value) ? C.gold : "#252525", textShadow: s <= (hover || value) ? "0 0 12px rgba(232,200,64,0.7)" : "none", transform: hover === s && onChange ? "scale(1.2)" : "scale(1)", transition: "all 0.1s" }}>★</button>
-      ))}
+      {[1, 2, 3, 4, 5].map(s => {
+        const full = display >= s;
+        const half = !full && display >= s - 0.5;
+        const isHovered = onChange && hover > 0 && Math.ceil(hover) === s;
+        return (
+          <div key={s}
+            onMouseMove={e => handleMouseMove(e, s)}
+            onMouseLeave={() => setHover(0)}
+            onClick={e => handleClick(e, s)}
+            style={{ position: "relative", width: px, height: px, cursor: onChange ? "pointer" : "default", transform: isHovered ? "scale(1.2)" : "scale(1)", transition: "transform 0.1s", flexShrink: 0 }}>
+            {/* Background dim star */}
+            <span style={{ position: "absolute", fontSize: px, lineHeight: 1, color: "#252525", userSelect: "none" }}>★</span>
+            {/* Full or half fill */}
+            {(full || half) && (
+              <span style={{ position: "absolute", fontSize: px, lineHeight: 1, color: C.gold, textShadow: "0 0 12px rgba(232,200,64,0.7)", userSelect: "none", overflow: "hidden", width: full ? "100%" : "50%", display: "block" }}>★</span>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -383,7 +417,7 @@ function FightModal({ fight, rating, onRate, onClose, review, onReview }) {
           <div style={{ marginBottom: "14px" }}>
             <div style={{ color: C.muted, fontSize: "9px", fontFamily: "monospace", letterSpacing: "2px", marginBottom: "8px" }}>YOUR RATING</div>
             <StarRating value={rating || 0} onChange={r => onRate(fight.id, r)} size="lg" />
-            {rating > 0 && <div style={{ color: "#777", fontSize: "11px", fontFamily: "monospace", marginTop: "6px" }}>{FIGHT_VERDICTS[rating]}</div>}
+            {rating > 0 && <div style={{ color: "#777", fontSize: "11px", fontFamily: "monospace", marginTop: "6px" }}>{FIGHT_VERDICTS[Math.round(rating)]}</div>}
           </div>
           <div>
             <div style={{ color: C.muted, fontSize: "9px", fontFamily: "monospace", letterSpacing: "2px", marginBottom: "8px" }}>YOUR REVIEW</div>
@@ -414,7 +448,7 @@ function CardRatingWidget({ cardRating, cardReview, onRate, onReview }) {
         </div>
       </div>
       <StarRating value={cardRating || 0} onChange={onRate} size="xl" />
-      {cardRating > 0 && <div style={{ color: "#888", fontSize: "12px", fontFamily: "monospace", marginTop: "8px" }}>{CARD_VERDICTS[cardRating]}</div>}
+      {cardRating > 0 && <div style={{ color: "#888", fontSize: "12px", fontFamily: "monospace", marginTop: "8px" }}>{CARD_VERDICTS[Math.round(cardRating)]}</div>}
       <textarea value={draft} onChange={e => setDraft(e.target.value)} placeholder="Was it a top-to-bottom banger or a one-fight show? Leave your overall verdict..."
         style={{ marginTop: "14px", width: "100%", minHeight: "64px", background: "#0a0a0a", border: `1px solid ${C.border}`, borderRadius: "2px", color: "#ccc", fontFamily: "monospace", fontSize: "12px", padding: "9px", resize: "vertical", outline: "none", boxSizing: "border-box" }} />
       <Btn onClick={() => { onReview(draft); setSaved(true); setTimeout(() => setSaved(false), 1600); }} style={{ marginTop: "8px", background: saved ? "#1a3a1a" : C.gold, color: saved ? "#4ae84a" : "#000" }}>
@@ -507,7 +541,7 @@ function EventsView({ allFightRatings, allCardRatings, allCardReviews, onOpenEve
               </div>
               <div style={{ textAlign: "right", flexShrink: 0 }}>
                 <StarRating value={allCardRatings[event.id]} size="sm" />
-                <div style={{ color: "#555", fontSize: "9px", fontFamily: "monospace", marginTop: "2px" }}>{CARD_VERDICTS[allCardRatings[event.id]]}</div>
+                <div style={{ color: "#555", fontSize: "9px", fontFamily: "monospace", marginTop: "2px" }}>{CARD_VERDICTS[Math.round(allCardRatings[event.id])]}</div>
               </div>
             </div>
           ))}

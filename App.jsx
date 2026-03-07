@@ -108,13 +108,13 @@ const C = { gold: "#e8c840", bg: "#080808", surface: "#111", border: "#1e1e1e", 
 function StarRating({ value, onChange, size = "md" }) {
   const [hover, setHover] = useState(0);
   const px = { xl: 36, lg: 28, md: 20, sm: 15 }[size] || 20;
+  const uid = React.useId ? React.useId() : size;
 
   const handleMouseMove = (e, starIndex) => {
     if (!onChange) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
-    const half = x < rect.width / 2;
-    setHover(half ? starIndex - 0.5 : starIndex);
+    setHover(x < rect.width / 2 ? starIndex - 0.5 : starIndex);
   };
 
   const handleClick = (e, starIndex) => {
@@ -122,14 +122,22 @@ function StarRating({ value, onChange, size = "md" }) {
     if (!onChange) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
-    const half = x < rect.width / 2;
-    onChange(half ? starIndex - 0.5 : starIndex);
+    onChange(x < rect.width / 2 ? starIndex - 0.5 : starIndex);
   };
 
   const display = hover || value || 0;
 
   return (
     <div style={{ display: "flex", gap: "2px" }}>
+      <svg width="0" height="0" style={{ position: "absolute" }}>
+        <defs>
+          {[1,2,3,4,5].map(s => (
+            <clipPath key={s} id={`half-${uid}-${s}`}>
+              <rect x="0" y="0" width={px / 2} height={px} />
+            </clipPath>
+          ))}
+        </defs>
+      </svg>
       {[1, 2, 3, 4, 5].map(s => {
         const full = display >= s;
         const half = !full && display >= s - 0.5;
@@ -140,11 +148,12 @@ function StarRating({ value, onChange, size = "md" }) {
             onMouseLeave={() => setHover(0)}
             onClick={e => handleClick(e, s)}
             style={{ position: "relative", width: px, height: px, cursor: onChange ? "pointer" : "default", transform: isHovered ? "scale(1.2)" : "scale(1)", transition: "transform 0.1s", flexShrink: 0 }}>
-            {/* Background dim star */}
             <span style={{ position: "absolute", fontSize: px, lineHeight: 1, color: "#252525", userSelect: "none" }}>★</span>
-            {/* Full or half fill */}
-            {(full || half) && (
-              <span style={{ position: "absolute", fontSize: px, lineHeight: 1, color: C.gold, textShadow: "0 0 12px rgba(232,200,64,0.7)", userSelect: "none", overflow: "hidden", width: full ? "100%" : "50%", display: "block" }}>★</span>
+            {half && (
+              <span style={{ position: "absolute", fontSize: px, lineHeight: 1, color: C.gold, textShadow: "0 0 12px rgba(232,200,64,0.7)", userSelect: "none", clipPath: `url(#half-${uid}-${s})` }}>★</span>
+            )}
+            {full && (
+              <span style={{ position: "absolute", fontSize: px, lineHeight: 1, color: C.gold, textShadow: "0 0 12px rgba(232,200,64,0.7)", userSelect: "none" }}>★</span>
             )}
           </div>
         );

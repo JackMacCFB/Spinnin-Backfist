@@ -108,7 +108,7 @@ const C = { gold: "#e8c840", bg: "#080808", surface: "#111", border: "#1e1e1e", 
 function StarRating({ value, onChange, size = "md" }) {
   const [hover, setHover] = useState(0);
   const px = { xl: 36, lg: 28, md: 20, sm: 15 }[size] || 20;
-  const uid = React.useId ? React.useId() : size;
+  const [uid] = useState(() => Math.random().toString(36).slice(2));
 
   const handleMouseMove = (e, starIndex) => {
     if (!onChange) return;

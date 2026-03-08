@@ -50,6 +50,27 @@ const EVENTS = [
     ],
   },
   {
+    id: "ufcemmettvsvallejos", name: "UFC Fight Night", subtitle: "Emmett vs. Vallejos",
+    date: "March 14, 2026", venue: "Meta APEX, Las Vegas NV",
+    broadcast: "Paramount+", status: "upcoming",
+    fights: [
+      { id: 1, section: "MAIN EVENT", fighter1: "Josh Emmett", fighter2: "Kevin Vallejos", record1: "19-6", record2: "17-1", weightClass: "Featherweight", lbs: 145, note: "Veteran vs. unbeaten Argentine phenom", bio1: "Hard-hitting featherweight veteran, USA", bio2: "El Chino, unbeaten Argentine rising star" },
+      { id: 2, section: "CO-MAIN EVENT", fighter1: "Amanda Lemos", fighter2: "Gillian Robertson", record1: "15-5-1", record2: "16-8", weightClass: "Strawweight", lbs: 115, note: "Top-10 strawweight clash", bio1: "Brazilian striker, #7 UFC strawweight", bio2: "The Savage, Canadian grappler, #9 UFC strawweight" },
+      { id: 3, section: "MAIN CARD", fighter1: "Oumar Sy", fighter2: "Ion Cutelaba", record1: "12-1", record2: "19-11-1", weightClass: "Light Heavyweight", lbs: 205, note: "Rising Frenchman vs. The Hulk", bio1: "French light heavyweight, #19 UFC LHW", bio2: "The Hulk, Moldovan brawler, #21 UFC LHW" },
+      { id: 4, section: "MAIN CARD", fighter1: "Andre Fili", fighter2: "Jose Delgado", record1: "25-12", record2: "10-2", weightClass: "Featherweight", lbs: 145, note: "Veteran vs. unbeaten prospect", bio1: "Veteran featherweight, USA", bio2: "Touchy, American featherweight prospect" },
+      { id: 5, section: "MAIN CARD", fighter1: "Marwan Rahiki", fighter2: "Harry Hardwick", record1: "7-0", record2: "13-4-1", weightClass: "Featherweight", lbs: 145, note: "Unbeaten Australian vs. British veteran", bio1: "Unbeaten Australian prospect", bio2: "Houdini, British lightweight" },
+      { id: 6, section: "MAIN CARD", fighter1: "Vitor Petrino", fighter2: "Steven Asplund", record1: "13-2", record2: "7-1", weightClass: "Heavyweight", lbs: 265, note: "Heavyweight clash", bio1: "Brazilian heavyweight contender, #16 UFC HW", bio2: "Concrete, American heavyweight, #26 UFC HW" },
+      { id: 7, section: "PRELIMS", fighter1: "Bruno Silva", fighter2: "Charles Johnson", record1: "15-7-2", record2: "18-8", weightClass: "Flyweight", lbs: 125, note: "Flyweight contenders clash", bio1: "Brazilian flyweight, #15 UFC FLY", bio2: "InnerG, American flyweight, #22 UFC FLY" },
+      { id: 8, section: "PRELIMS", fighter1: "Brad Tavares", fighter2: "Eryk Anders", record1: "21-11", record2: "17-9", weightClass: "Middleweight", lbs: 185, note: "UFC veterans showdown", bio1: "Hawaiian middleweight veteran", bio2: "Ya Boi, American middleweight" },
+      { id: 9, section: "PRELIMS", fighter1: "Chris Curtis", fighter2: "Myktybek Orolbai", record1: "32-12", record2: "15-2-1", weightClass: "Welterweight", lbs: 170, note: "Experienced American vs. unbeaten Kyrgyz", bio1: "The Action Man, American welterweight", bio2: "Kyrgyzstan welterweight, #24 UFC WW" },
+      { id: 10, section: "PRELIMS", fighter1: "Bolaji Oki", fighter2: "Manoel Sousa", record1: "10-3", record2: "13-1", weightClass: "Lightweight", lbs: 155, note: "Lightweight prelim", bio1: "The Zulu Warrior, Belgian lightweight", bio2: "Manumito, Brazilian lightweight" },
+      { id: 11, section: "PRELIMS", fighter1: "Luan Lacerda", fighter2: "Hecher Sosa", record1: "13-3", record2: "14-1", weightClass: "Bantamweight", lbs: 135, note: "Bantamweight prelim", bio1: "Brazilian bantamweight", bio2: "Guanche Warrior, Spanish bantamweight" },
+      { id: 12, section: "PRELIMS", fighter1: "Bia Mesquita", fighter2: "Montse Rendon", record1: "6-0", record2: "7-1", weightClass: "Women's Bantamweight", lbs: 135, note: "Women's bantamweight clash", bio1: "Unbeaten Brazilian, #21 UFC BW", bio2: "Monster, Mexican fighter, #24 UFC BW" },
+      { id: 13, section: "PRELIMS", fighter1: "Elijah Smith", fighter2: "Su Young You", record1: "9-1", record2: "16-3", weightClass: "Bantamweight", lbs: 135, note: "Bantamweight prelim", bio1: "American bantamweight prospect", bio2: "Yoo-Jitsu, South Korean bantamweight" },
+      { id: 14, section: "PRELIMS", fighter1: "Piera Rodriguez", fighter2: "Sam Hughes", record1: "11-2", record2: "11-6", weightClass: "Strawweight", lbs: 115, note: "Women's strawweight bout", bio1: "La Fiera, Venezuelan strawweight, #22 UFC SW", bio2: "Sampage, American strawweight, #21 UFC SW" },
+    ]
+  },
+  {
     id: "ufc326", name: "UFC 326", subtitle: "Holloway vs. Oliveira 2",
     date: "March 7, 2026", venue: "T-Mobile Arena, Las Vegas NV",
     broadcast: "Paramount+ / CBS", status: "past",

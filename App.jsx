@@ -50,7 +50,7 @@ const EVENTS = [
     ],
   },
   {
-    id: "ufcemmettvsvallejos", name: "UFC Fight Night", subtitle: "Emmett vs. Vallejos",
+    id: "ufcemmettvsvallejos", name: "UFC Vegas 114", subtitle: "Emmett vs. Vallejos",
     date: "March 14, 2026", venue: "Meta APEX, Las Vegas NV",
     broadcast: "Paramount+", status: "upcoming",
     fights: [

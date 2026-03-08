@@ -54,7 +54,7 @@ const EVENTS = [
     date: "March 14, 2026", venue: "Meta APEX, Las Vegas NV",
     broadcast: "Paramount+", status: "upcoming",
     fights: [
-      { id: 1, section: "MAIN EVENT", fighter1: "Josh Emmett", fighter2: "Kevin Vallejos", record1: "19-6", record2: "17-1", weightClass: "Featherweight", lbs: 145, note: "Veteran vs. unbeaten Argentine phenom", bio1: "Hard-hitting featherweight veteran, USA", bio2: "El Chino, unbeaten Argentine rising star" },
+      { id: 1, section: "MAIN EVENT", fighter1: "Josh Emmett", fighter2: "Kevin Vallejos", record1: "19-6", record2: "17-1", weightClass: "Featherweight", lbs: 145, note: "Veteran vs. unbeaten-in-UFC Argentine phenom", bio1: "Hard-hitting featherweight veteran, USA", bio2: "El Chino, Argentine rising star, unbeaten in the UFC" },
       { id: 2, section: "CO-MAIN EVENT", fighter1: "Amanda Lemos", fighter2: "Gillian Robertson", record1: "15-5-1", record2: "16-8", weightClass: "Strawweight", lbs: 115, note: "Top-10 strawweight clash", bio1: "Brazilian striker, #7 UFC strawweight", bio2: "The Savage, Canadian grappler, #9 UFC strawweight" },
       { id: 3, section: "MAIN CARD", fighter1: "Oumar Sy", fighter2: "Ion Cutelaba", record1: "12-1", record2: "19-11-1", weightClass: "Light Heavyweight", lbs: 205, note: "Rising Frenchman vs. The Hulk", bio1: "French light heavyweight, #19 UFC LHW", bio2: "The Hulk, Moldovan brawler, #21 UFC LHW" },
       { id: 4, section: "MAIN CARD", fighter1: "Andre Fili", fighter2: "Jose Delgado", record1: "25-12", record2: "10-2", weightClass: "Featherweight", lbs: 145, note: "Veteran vs. unbeaten prospect", bio1: "Veteran featherweight, USA", bio2: "Touchy, American featherweight prospect" },
